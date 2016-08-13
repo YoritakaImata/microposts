@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   get 'login', to: 'sessions#new'
   post 'login', to: 'sessions#create'
   delete 'logout', to: 'sessions#destroy'
-
+  
   # get 'users/:id/followings', to: 'users#followings'
   # get 'users/:id/followers', to: 'users#followers'
   # followings_user GET    /users/:id/followings(.:format) users#followings
@@ -14,7 +14,13 @@ Rails.application.routes.draw do
       get :followings, :followers
     end
   end
-  resources :microposts
+  
+  resources :microposts do
+    member do
+      post :retweet
+    end
+  end
+  
   resources :relationships, only: [:create, :destroy]
   
   # The priority is based upon order of creation: first created -> highest priority.

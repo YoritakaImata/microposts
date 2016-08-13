@@ -6,6 +6,8 @@
         Posted <%= time_ago_in_words(micropost.created_at) %> ago.
         <% if current_user == micropost.user %>
             <%= link_to "delete", micropost, method: :delete, data: { confirm: "You sure?" } %>
+        <% else %>
+            <%= link_to "retweet", retweet_micropost_path(micropost), method: :post %>
         <% end %>
     </span>
 </li>
